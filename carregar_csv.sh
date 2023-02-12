@@ -10,7 +10,15 @@
 file=$1
 table_name=${file##*.}
 
-echo "Carregando arquivo $file na tabela $table_name"
+echo "Carregando arquivo $file"
+
+# Altera a codificação de caracteres do arquivo para UTF-8
+echo "Alterando codificacao de caracteres de $file > $table_name.csv..."
+iconv -f iso-8859-1 -t utf-8 "$file" > "$table_name.csv"
+
+echo "Excluindo $file..."
+rm -f "$file"
+file="$table_name.csv"
 
 # Carrega as credenciais salvas no arquivo credenciais.txt
 source credenciais.txt 
@@ -18,7 +26,7 @@ source credenciais.txt
 # Contar o número de colunas no arquivo CSV
 cols=$(head -n 2 "$file" | tail -n 1 | awk -F\; '{print NF}')
 
-
+echo "Criando tabela $table_name com $cols colunas"
 # Criar tabela dinamicamente
 create_table="CREATE TABLE IF NOT EXISTS $table_name ("
 for i in $(seq 1 $cols); do
