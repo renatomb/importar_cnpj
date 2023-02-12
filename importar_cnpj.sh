@@ -1,14 +1,13 @@
 #!/bin/bash
-# Script para importação da base de dados CNPJ disponibilizada
+# Script para download e importação da base de dados CNPJ disponibilizada
 # no portal Dados Abertos da Receita Federal do Brasil
 #
 # Autor: Renato Monteiro Batista
 # Data: 12/02/2023
 #
-# Versão 0.1 beta
+# Versão 1.0
 
-# Download (mirror) dos arquivos no portal de dados abertos da Receita Federal
-wget --mirror --convert-links --adjust-extension --page-requisites --no-parent http://200.152.38.155/CNPJ/
+./download_cnpj.sh
 
 # uma vez feito o download do arquivo só me interessa os arquivos .zip
 cd 200.152.38.155/
@@ -23,6 +22,5 @@ for file in *.zip; do
 done
 
 for file in *CSV; do
-   table_name=${file##*.}
-   echo $table_name
+   ./carregar_csv.sh $file
 done
