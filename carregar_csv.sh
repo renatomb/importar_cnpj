@@ -42,6 +42,7 @@ mysql -h $host -u $user -p$password $database -e "$create_table"
 # Importar os dados a partir do arquivo CSV
 load_data="LOAD DATA LOCAL INFILE '$file' REPLACE INTO TABLE $table_name FIELDS TERMINATED BY ';' ENCLOSED BY '\"' LINES TERMINATED BY '\n';"
 
+echo "Carregando dados do arquivo $file"
 mysql -h $host -u $user -p$password $database -e "$load_data"
 
 # Exibir o número de linhas da tabela
