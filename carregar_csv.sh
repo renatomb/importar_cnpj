@@ -30,7 +30,7 @@ echo "Criando tabela $table_name com $cols colunas"
 # Criar tabela dinamicamente
 create_table="CREATE TABLE IF NOT EXISTS $table_name ("
 for i in $(seq 1 $cols); do
-  create_table="$create_table col$i VARCHAR(500)"
+  create_table="$create_table col$i TEXT"
   if [ $i -lt $cols ]; then
     create_table="$create_table, "
   fi
