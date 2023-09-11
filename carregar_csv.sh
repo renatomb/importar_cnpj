@@ -8,7 +8,27 @@
 # Versão 1.0
 
 file=$1
-table_name=${file##*.}
+
+# Se for especificado o segundo parâmetro será usado como nome da tabela
+if [ $# -eq 2 ]; then
+  table_name=$2
+else
+  table_name=${file##*.}
+  # Contar o número de colunas no arquivo CSV
+  cols=$(head -n 2 "$file" | tail -n 1 | awk -F\; '{print NF}')
+
+  echo "Criando tabela $table_name com $cols colunas"
+  # Criar tabela dinamicamente
+  create_table="CREATE TABLE IF NOT EXISTS $table_name ("
+  for i in $(seq 1 $cols); do
+    create_table="$create_table col$i TEXT"
+    if [ $i -lt $cols ]; then
+      create_table="$create_table, "
+    fi
+  done
+  create_table="${create_table%, });"
+  mysql -h $host -u $user -p$password $database -e "$create_table"
+fi
 
 echo "Carregando arquivo $file"
 
@@ -23,22 +43,6 @@ file="$table_name.csv"
 # Carrega as credenciais salvas no arquivo credenciais.txt
 source credenciais.txt 
 
-# Contar o número de colunas no arquivo CSV
-cols=$(head -n 2 "$file" | tail -n 1 | awk -F\; '{print NF}')
-
-echo "Criando tabela $table_name com $cols colunas"
-# Criar tabela dinamicamente
-create_table="CREATE TABLE IF NOT EXISTS $table_name ("
-for i in $(seq 1 $cols); do
-  create_table="$create_table col$i TEXT"
-  if [ $i -lt $cols ]; then
-    create_table="$create_table, "
-  fi
-done
-create_table="${create_table%, });"
-
-mysql -h $host -u $user -p$password $database -e "$create_table"
-
 # Importar os dados a partir do arquivo CSV
 load_data="LOAD DATA LOCAL INFILE '$file' REPLACE INTO TABLE $table_name FIELDS TERMINATED BY ';' ENCLOSED BY '\"' LINES TERMINATED BY '\n';"
 
@@ -49,3 +53,4 @@ mysql -h $host -u $user -p$password $database -e "$load_data"
 mysql -h $host -u $user -p$password $database -e "SELECT COUNT(*) FROM $table_name;"
 
 echo "Arquivo $file carregado com sucesso na tabela $table_name"
+rm -f $table_name.csv
