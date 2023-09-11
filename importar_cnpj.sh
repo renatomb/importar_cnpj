@@ -17,10 +17,35 @@ mv CNPJ/regime_tributario/*.zip zip/
 cd zip
 
 # Descompactar todos os arquivos zip existentes no diretório atual
-for file in *.zip; do
+for file in Empresas*.zip; do
   unzip "$file"
+  for arquivo in *CSV; do
+    ./carregar_csv.sh $arquivo empresas
+  done
+  rm -f "$file"
 done
 
-for file in *CSV; do
-   ./carregar_csv.sh $file
+for file in Estabelecimentos*.zip; do
+  unzip "$file"
+  for arquivo in *ESTABELE; do
+    python3 importar_estabe.py $arquivo
+    rm -f $arquivo
+  done
+  rm -f "$file"
+done
+
+for file in Socios*.zip; do
+  unzip "$file"
+  for arquivo in *CSV; do
+    ./carregar_csv.sh $arquivo socios
+  done
+  rm -f "$file"
+done
+
+for file in *.zip; do
+  unzip "$file"
+  for arquivo in *CSV; do
+    ./carregar_csv.sh $arquivo
+  done
+  rm -f "$file"
 done
