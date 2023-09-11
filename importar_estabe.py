@@ -71,7 +71,7 @@ if path.is_file():
         next(leitor)
         # Percorrer o arquivo linha a linha
         for linha in leitor:
-            # Extrair os campos da linha
+            # Extrair os campos da linha            
             cnpj_basico = limpar_espacos_repetidos(linha[0])
             cnpj_ordem = limpar_espacos_repetidos(linha[1])
             cnpj_dv = limpar_espacos_repetidos(linha[2])
@@ -102,7 +102,7 @@ if path.is_file():
             email = limpar_espacos_repetidos(linha[27])
 
             # Criar um comando SQL para inserir os campos na tabela estabe
-            sql = "INSERT INTO estabe (cnpj_basico, cnpj_ordem, cnpj_dv, matriz_filial, nome_fantasia, situacao_cadastral, data_situacao_cadastral, motivo_situacao_cadastral, cidade_exterior, cod_pais, data_inicio_ativ, cnae_fiscal, cnae_secundario, tipo_logradouro, logradouro, numero, complemento, bairro, cep, uf, cod_municipio, ddd_1, telefone_1, ddd_2, telefone_2, ddd_fax, num_fax, email) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+            sql = "INSERT INTO estabelecimentos (cnpj_basico, cnpj_ordem, cnpj_dv, matriz_filial, nome_fantasia, situacao_cadastral, data_situacao_cadastral, motivo_situacao_cadastral, cidade_exterior, cod_pais, data_inicio_ativ, cnae_fiscal, cnae_secundario, tipo_logradouro, logradouro, numero, complemento, bairro, cep, uf, cod_municipio, ddd_1, telefone_1, ddd_2, telefone_2, ddd_fax, num_fax, email) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
 
             # Criar uma tupla com os valores dos campos
             valores = (cnpj_basico, cnpj_ordem, cnpj_dv, matriz_filial, nome_fantasia, situacao_cadastral, data_situacao_cadastral, motivo_situacao_cadastral, cidade_exterior, cod_pais, data_inicio_ativ, cnae_fiscal, cnae_secundario, tipo_logradouro, logradouro, numero, complemento, bairro, cep, uf, cod_municipio, ddd_1, telefone_1, ddd_2, telefone_2, ddd_fax, num_fax, email)
@@ -111,7 +111,7 @@ if path.is_file():
             cursor.execute(sql,valores)
 
             # Imprime . na tela indicativo de execução
-            print(".", end="")
+            # print(".", end="")
             conexao.commit()
 
     # Fechar o cursor e a conexão
