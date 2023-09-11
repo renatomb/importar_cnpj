@@ -9,7 +9,7 @@ Repositorio do projeto: https://github.com/renatomb/importar_cnpj/
 Autor: Renato Monteiro Batista (https://renato.ovh)
 */
 
-CREATE TABLE estabe (
+CREATE TABLE estabelecimentos (
     cnpj_basico VARCHAR(8) NOT NULL,
     cnpj_ordem VARCHAR(4) NOT NULL,
     cnpj_dv VARCHAR(2) NOT NULL,
