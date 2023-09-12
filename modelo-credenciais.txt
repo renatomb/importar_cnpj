@@ -1,0 +1,6 @@
+# Credenciais para acesso ao banco de dados mysql
+# Copiar o arquivo para: credenciais.txt
+host="127.0.0.1"
+user="usuario"
+password="umasenhabemsegura"
+database="cnpj"
