@@ -8,6 +8,7 @@
 # Versão 1.0
 
 ICNPJ=$(pwd)
+source credenciais.txt 
 ./download_cnpj.sh
 
 # uma vez feito o download do arquivo só me interessa os arquivos .zip
