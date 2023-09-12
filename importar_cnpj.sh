@@ -7,10 +7,10 @@
 #
 # Versão 1.0
 
+ICNPJ=$(pwd)
 ./download_cnpj.sh
 
 # uma vez feito o download do arquivo só me interessa os arquivos .zip
-PWD=$(pwd)
 cd 200.152.38.155/
 mkdir zip
 mv CNPJ/*.zip zip/
@@ -21,7 +21,7 @@ cd zip
 for file in Empresas*.zip; do
   unzip "$file"
   for arquivo in *CSV; do
-    $PWD/carregar_csv.sh $arquivo empresas
+    $ICNPJ/carregar_csv.sh $arquivo empresas
   done
   rm -f "$file"
 done
@@ -29,7 +29,7 @@ done
 for file in Estabelecimentos*.zip; do
   unzip "$file"
   for arquivo in *ESTABELE; do
-    python3 $PWD/importar_estabe.py $arquivo
+    python3 $ICNPJ/importar_estabe.py $arquivo
     rm -f $arquivo
   done
   rm -f "$file"
@@ -38,7 +38,7 @@ done
 for file in Socios*.zip; do
   unzip "$file"
   for arquivo in *CSV; do
-    $PWD/carregar_csv.sh $arquivo socios
+    $ICNPJ/carregar_csv.sh $arquivo socios
   done
   rm -f "$file"
 done
@@ -46,7 +46,7 @@ done
 for file in *.zip; do
   unzip "$file"
   for arquivo in *CSV; do
-    $PWD/carregar_csv.sh $arquivo
+    $ICNPJ/carregar_csv.sh $arquivo
   done
   rm -f "$file"
 done
