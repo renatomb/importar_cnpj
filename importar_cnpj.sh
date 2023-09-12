@@ -28,7 +28,9 @@ done
 for file in $ICNPJ/200.152.38.155/zip/Estabelecimentos*.zip; do
   unzip "$file"
   for arquivo in *ESTABELE; do
-    python3 $ICNPJ/importar_estabe.py $arquivo
+    iconv -f iso-8859-1 -t utf-8 "$arquivo" > "estabele.csv"
+    python3 $ICNPJ/importar_estabe.py estabele.csv
+    rm -f estabele.csv
     rm -f $arquivo
   done
   rm -f "$file"
