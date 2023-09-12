@@ -12,14 +12,12 @@ source credenciais.txt
 ./download_cnpj.sh
 
 # uma vez feito o download do arquivo só me interessa os arquivos .zip
-cd 200.152.38.155/
-mkdir zip
-mv CNPJ/*.zip zip/
-mv CNPJ/regime_tributario/*.zip zip/
-cd zip
+mkdir $ICNPJ/200.152.38.155/zip
+mv $ICNPJ/200.152.38.155/CNPJ/*.zip $ICNPJ/200.152.38.155/zip/
+mv $ICNPJ/200.152.38.155/CNPJ/regime_tributario/*.zip $ICNPJ/200.152.38.155/zip/
 
 # Descompactar todos os arquivos zip existentes no diretório atual
-for file in Empresas*.zip; do
+for file in $ICNPJ/200.152.38.155/zip/Empresas*.zip; do
   unzip "$file"
   for arquivo in *CSV; do
     $ICNPJ/carregar_csv.sh $arquivo empresas
@@ -27,7 +25,7 @@ for file in Empresas*.zip; do
   rm -f "$file"
 done
 
-for file in Estabelecimentos*.zip; do
+for file in $ICNPJ/200.152.38.155/zip/Estabelecimentos*.zip; do
   unzip "$file"
   for arquivo in *ESTABELE; do
     python3 $ICNPJ/importar_estabe.py $arquivo
@@ -36,7 +34,7 @@ for file in Estabelecimentos*.zip; do
   rm -f "$file"
 done
 
-for file in Socios*.zip; do
+for file in $ICNPJ/200.152.38.155/zip/Socios*.zip; do
   unzip "$file"
   for arquivo in *CSV; do
     $ICNPJ/carregar_csv.sh $arquivo socios
@@ -44,7 +42,7 @@ for file in Socios*.zip; do
   rm -f "$file"
 done
 
-for file in *.zip; do
+for file in $ICNPJ/200.152.38.155/zip/*.zip; do
   unzip "$file"
   for arquivo in *CSV; do
     $ICNPJ/carregar_csv.sh $arquivo
