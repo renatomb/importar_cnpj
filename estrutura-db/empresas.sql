@@ -4,7 +4,7 @@ CREATE TABLE empresas (
     razao_social VARCHAR(150) NOT NULL,
     natureza_juridica VARCHAR(4) NOT NULL,
     qualif_juridica VARCHAR(2) NOT NULL,
-    capital_social VARCHAR(14),
+    capital_social VARCHAR(20) NULL DEFAULT NULL,
     porte VARCHAR(2) NOT NULL,
-    ente_federativo_responsavel VARCHAR(2)
+    ente_federativo_responsavel TEXT NULL DEFAULT NULL
 );
