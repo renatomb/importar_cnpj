@@ -7,6 +7,12 @@
 #
 # Versão 1.0
 
+# pegar o path de $0
+CAMINHO=$(dirname "$0")
+
+# Carrega as credenciais salvas no arquivo credenciais.txt
+source $CAMINHO/credenciais.txt 
+
 file=$1
 
 # Se for especificado o segundo parâmetro será usado como nome da tabela
@@ -39,9 +45,6 @@ iconv -f iso-8859-1 -t utf-8 "$file" > "$table_name.csv"
 echo "Excluindo $file..."
 rm -f "$file"
 file="$table_name.csv"
-
-# Carrega as credenciais salvas no arquivo credenciais.txt
-source credenciais.txt 
 
 # Importar os dados a partir do arquivo CSV
 load_data="LOAD DATA LOCAL INFILE '$file' REPLACE INTO TABLE $table_name FIELDS TERMINATED BY ';' ENCLOSED BY '\"' LINES TERMINATED BY '\n';"
