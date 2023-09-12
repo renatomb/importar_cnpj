@@ -5,6 +5,14 @@ Após o download será feita a descompactação dos arquivos zip, seguidos alter
 Serão criadas as respectivas tabelas no banco de dados mysql, conforme o número de colunas de cada arquivo CSV.
 Por fim, serão importados os registros dos arquivos CSV no banco de dados mysql usando o cliente mysql para linux com o comando LOAD DATA.
 
+# Como usar
+
+Simplesmente execute o script importar_cnpj.sh
+
+```bash
+./importar_cnpj.sh
+```
+
 ## Licença GNU GPL v3
 
 Você pode fazer quase qualquer coisa que você queira com esse projeto, exceto distribuir o código fonte em projetos de código fechado.
