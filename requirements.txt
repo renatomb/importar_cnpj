@@ -1,0 +1,4 @@
+csv==1.0
+mysql-connector-python==8.0.26
+configparser==5.0.2
+pathlib==1.0.1
