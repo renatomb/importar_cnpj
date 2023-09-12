@@ -9,4 +9,4 @@
 # Versão 1.0
 
 # Download (mirror) dos arquivos no portal de dados abertos da Receita Federal
-wget --mirror --convert-links --adjust-extension --page-requisites --no-parent http://200.152.38.155/CNPJ/
+wget -N --mirror --convert-links --adjust-extension --page-requisites --no-parent http://200.152.38.155/CNPJ/
