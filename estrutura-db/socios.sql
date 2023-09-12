@@ -9,6 +9,6 @@ CREATE TABLE socios (
     perc_capital_social VARCHAR(5),
     cpf_representante_legal VARCHAR(11),
     nome_representante_legal VARCHAR(150),
-    cod_qualificacao_representante_legal VARCHAR(2)
+    cod_qualificacao_representante_legal VARCHAR(2),
     nao_sei VARCHAR(3)
 );
