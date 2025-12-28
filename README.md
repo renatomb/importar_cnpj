@@ -13,6 +13,21 @@ Simplesmente execute o script importar_cnpj.sh
 ./importar_cnpj.sh
 ```
 
+# Requisitos
+
+- wget
+- unzip
+- mysql-client
+- python3
+
+## Módulos do python
+
+Instalação dos requisitos do script python:
+
+```bash
+python3 -m pip install -r requirements.txt
+```
+
 ## Licença GNU GPL v3
 
 Você pode fazer quase qualquer coisa que você queira com esse projeto, exceto distribuir o código fonte em projetos de código fechado.
